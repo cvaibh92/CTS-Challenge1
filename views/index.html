@@ -1,0 +1,136 @@
+<!DOCTYPE HTML>
+
+<html>
+	<head>
+		<title>CODE CAFE</title>
+		<meta charset="utf-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1" />
+		<!--[if lte IE 8]><script src="assets/js/ie/html5shiv.js"></script><![endif]-->
+		<link rel="stylesheet" href="stylesheets/main.css" />
+		<!--[if lte IE 9]><link rel="stylesheet" href="stylesheets/ie9.css" /><![endif]-->
+		<!--[if lte IE 8]><link rel="stylesheet" href="stylesheets/ie8.css" /><![endif]-->
+	</head>
+	<body ng-app="Code" ng-controller="CodeController">
+
+		<!-- Wrapper -->
+			<div id="wrapper">
+
+				<!-- Header -->
+					<header id="header">
+					
+						<nav class="main">
+							<ul>
+								<li class="search">
+									<a class="fa-search" href="#search"	>Search</a>		
+									<form id="search" method="get" action="#">
+										<input type="text" name="query" placeholder="Search" />
+									</form>
+								</li>
+								
+							</ul>
+						</nav>
+						<ul class="actions pagination" style="margin-right:-56%;font-weight:bold;">
+								<dir-pagination-controls
+								   max-size="5"
+								   direction-links="true"
+								   boundary-links="true" >
+								</dir-pagination-controls>
+							</ul>
+					</header>
+
+				
+				<!-- Main -->
+					<div id="main">
+						
+					
+						<!-- Post -->
+							<article class="post" dir-paginate="item in values|itemsPerPage:2 ">
+								<header>
+									<div class="title">
+										<h2 ><a>{{item.title}} </a></h2>
+									</div>
+									<div class="meta">
+										<h2 class="published">{{item.compiler_status}}</h2>
+										<a href="#" class="author"><span class="name">{{item.language}}</span><img src="{{imgvalues[$index]}}" alt="Compiler Image" /></a>
+									</div>
+								</header>
+								<textarea rows="10" >{{item.source_code}}</textarea>
+							</article>
+
+						
+					
+						<!-- Pagination -->
+							<ul class="actions pagination" style="font-weight:bold;">
+								<dir-pagination-controls
+								   max-size="5"
+								   direction-links="true"
+								   boundary-links="true" >
+								</dir-pagination-controls>
+							</ul>
+
+					</div>
+
+				<!-- Sidebar -->
+					<section id="sidebar">
+
+						<!-- Intro -->
+							<section id="intro">
+								<a href="#" class="logo"><img src="images/logocts.jpg" alt="" height="150px"   /></a>
+								<header>
+									<h2>CODE CAFE</h2>
+									<p>Code Hub With Stats</p>
+								</header>
+							</section>
+
+						<!-- Mini Posts -->
+						
+						<!--<section>
+								<div class="mini-posts">
+
+								<h3>Filter</h3>
+									<div class="published">
+									<input type="checkbox"  ng-model="useMakes[0]"/><h4  style="margin-left:8%;" class="published">Accepted</h4>
+									<input type="checkbox" ng-model="useMakes[1]"/><h4 style="margin-left:8%;" class="published">Wrong Answer</h4>
+									
+									</div>
+									
+								</div>
+							</section>
+							-->
+							<section>
+								<div class="mini-posts">
+
+									<h3>Statical Analaysis</h3>
+									<ul style="list-style-type:disc">
+									<li><h4 class="published">Top 5 Languages Used</h4></li>
+									<h5 class="published" ng-repeat="l in topfive | orderBy: '-times' | limitTo : 5"><span style="font-weight:bold">{{l.language}} </span>: {{l.times}} </h5>
+									<li><h4 class="published">Top-2 Submissions Attempted</h4></li>
+									<h5 class="published" ng-repeat="l in toptwo | orderBy:'-occ' |limitTo : 2"><span style="font-weight:bold">{{l.title}} </span>: {{l.occ}} </h5>
+									<li><h4 class="published">Number Of Submission per Level</h4></li>
+									<h5 class="published" ng-repeat="l in code_level"><span style="font-weight:bold">{{l.lev}} </span>: {{l.occ}} </h5>
+									<li><h4 class="published">Total Submissions : {{tot}}</h4></li>
+									
+									
+								</div>
+									
+								
+							</section>
+						
+
+					</section>
+
+			</div>
+
+		<!-- Scripts -->
+			<script src="javascripts/jquery.min.js"></script>
+			<script src="javascripts/skel.min.js"></script>
+			<script src="javascripts/util.js"></script>
+			<script src="http://ajax.googleapis.com/ajax/libs/angularjs/1.4.8/angular.min.js"></script>
+			<script src ="javascripts/dirPagination.js"></script>
+			<script src ="javascripts/code.js"></script>
+			<!--<script>angular.module('Code', ['angularUtils.directives.dirPagination']);</script>-->
+			<!--[if lte IE 8]><script src="javascripts/ie/respond.min.js"></script><![endif]-->
+			<script src="javascripts/main.js"></script>
+
+	</body>
+</html>
