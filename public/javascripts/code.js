@@ -50,7 +50,7 @@
 	//console.log($scope);
 	$http({
 			method : 'GET',
-			url : 'http://hackerearth.0x10.info/api/ctz_coders?type=json&query=list_compiler_image'
+			url : 'https://hackerearth.0x10.info/api/ctz_coders?type=json&query=list_compiler_image'
 			}).then(function successCallback(response) {
 			images = response.data;
 				}, function errorCallback(response) {
@@ -59,7 +59,7 @@
 			
 	$http({
 			method : 'GET',
-			url : 'http://hackerearth.0x10.info/api/ctz_coders?type=json&query=list_submissions&page=1'
+			url : 'https://hackerearth.0x10.info/api/ctz_coders?type=json&query=list_submissions&page=1'
 			}).then(function successCallback(response) {
 			const web = response.data.websites;
 			//console.log(web);
