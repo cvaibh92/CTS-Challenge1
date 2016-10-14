@@ -127,30 +127,95 @@
 		}
 		else if($scope.lol)
 		{	
-			for(item in items)
-			{	
+			if($scope.lol1 && !($scope.lol2))
+			{
+				for(item in items)
+				{	
 			
-				if(items[item].compiler_status == "Accepted")
-				newitems.push(items[item]);
+					if(items[item].compiler_status == "Accepted" || items[item].compiler_status.includes("Wrong"))
+					newitems.push(items[item]);
+				}
+			}
+			else if(!($scope.lol1) && $scope.lol2)
+			{
+				for(item in items)
+				{	
+			
+					if(items[item].compiler_status == "Accepted" || items[item].compiler_status.includes("Time limit") )
+					newitems.push(items[item]);
+				}
+			}
+			else
+			{
+				for(item in items)
+				{	
+					if(items[item].compiler_status == "Accepted" )
+					newitems.push(items[item]);
+				}
+				
 			}
 			$scope.values=newitems;
 		}
 		else if($scope.lol1)
 		{	
-			for(item in items)
-			{	
-				if(items[item].compiler_status.includes("Wrong"))
-				newitems.push(items[item]);
+			if($scope.lol && !($scope.lol2))
+			{
+				for(item in items)
+				{	
+			
+					if(items[item].compiler_status == "Accepted" || items[item].compiler_status.includes("Wrong"))
+					newitems.push(items[item]);
+				}
+			}
+			else if(!($scope.lol) && $scope.lol2)
+			{
+				for(item in items)
+				{	
+			
+					if(items[item].compiler_status.includes("Wrong") || items[item].compiler_status.includes("Time limit") )
+					newitems.push(items[item]);
+				}
+			}
+			else
+			{
+				for(item in items)
+				{	
+					if(items[item].compiler_status.includes("Wrong"))
+					newitems.push(items[item]);
+				}
+				
 			}
 			$scope.values=newitems;
 		
 		}
 		else if($scope.lol2)
 		{	
-			for(item in items)
-			{	
-				if(items[item].compiler_status.includes("Time limit"))
-				newitems.push(items[item]);
+			if($scope.lol && !($scope.lol1))
+			{
+				for(item in items)
+				{	
+			
+					if(items[item].compiler_status == "Accepted" || items[item].compiler_status.includes("Time limit"))
+					newitems.push(items[item]);
+				}
+			}
+			else if(!($scope.lol) && $scope.lol1)
+			{
+				for(item in items)
+				{	
+			
+					if(items[item].compiler_status.includes("Wrong") || items[item].compiler_status.includes("Time limit") )
+					newitems.push(items[item]);
+				}
+			}
+			else
+			{
+				for(item in items)
+				{	
+					if(items[item].compiler_status.includes("Time limit"))
+					newitems.push(items[item]);
+				}
+				
 			}
 			$scope.values=newitems;
 			
