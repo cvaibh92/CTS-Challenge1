@@ -1,4 +1,4 @@
- 
+
 	
 	window.indexedDB = window.indexedDB || window.mozIndexedDB || window.webkitIndexedDB || window.msIndexedDB;
     window.IDBTransaction = window.IDBTransaction || window.webkitIDBTransaction || window.msIDBTransaction;
@@ -11,9 +11,9 @@
 	total=0;
 	var img = [];	 
     var app = angular.module("Code", ["angularUtils.directives.dirPagination"]);
-	
+	var items = [];
 	function check(callback){
-		var items = [];
+		
 		var trans = db.transaction("websites_new7");
 		 var objectStore = trans.objectStore("websites_new7");
 				//console.log("hello1");
@@ -112,7 +112,56 @@
 		});
 		
 		
+		$scope.includeFilter = function(filter) {
+		var newitems = [];
+	
+		if($scope.lol && $scope.lol1 && $scope.lol2)
+		{
+		$scope.values=items;
 		
+		}
+		else if(!($scope.lol) && !($scope.lol1) && !($scope.lol2))
+		{
+		$scope.values=items;
+		
+		}
+		else if($scope.lol)
+		{	
+			for(item in items)
+			{	
+			
+				if(items[item].compiler_status == "Accepted")
+				newitems.push(items[item]);
+			}
+			$scope.values=newitems;
+		}
+		else if($scope.lol1)
+		{	
+			for(item in items)
+			{	
+				if(items[item].compiler_status.includes("Wrong"))
+				newitems.push(items[item]);
+			}
+			$scope.values=newitems;
+		
+		}
+		else if($scope.lol2)
+		{	
+			for(item in items)
+			{	
+				if(items[item].compiler_status.includes("Time limit"))
+				newitems.push(items[item]);
+			}
+			$scope.values=newitems;
+			
+		}
+		
+    }
+	
+	$scope.statusFilter = function() {
+        
+        return $scope.values;
+    }
 		//
 				
 		
@@ -232,44 +281,4 @@
 	
 	
 	
-	/*
-				function readAll(){
-				//var db;
-				var objectStore = db.transaction("websites_new7").objectStore("websites_new7");
-				console.log("hello1");
-				objectStore.openCursor(1).onsuccess = function(event) {
-				   var cursor = event.target.result;
-				   console.log("cursor"+cursor);
-				   if (cursor) {
-					  //alert("Name for id " + cursor.key + " is " + cursor.value.name + ", Age: " + cursor.value.age + ", Email: " + cursor.value.email);
-					  console.log("language is " + cursor.value.language);
-					  cursor.continue();
-				   }
-				   
-				   else {
-					  //alert("No more entries!");
-				   }
-				};
-				}
-			
-         
-         
-        function add() {
-            var request = db.transaction(["websites_new"], "readwrite");
-            //.objectStore("websites1")
-            for (var i in web) {
-               request.objectStore("websites_new").add(web[i]);
-            }
-            
-            request.onsuccess = function(event) {
-               alert("Kenny has been added to your database.");
-            };
-            
-            request.onerror = function(event) {
-               alert("Unable to add data\r\nKenny is aready exist in your database! ");
-            }
-         }
-       */
-		 
-		 
-		 
+	
